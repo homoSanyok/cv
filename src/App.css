@@ -6,7 +6,7 @@
   height: 100dvh;
   overflow: clip;
   isolation: isolate;
-  background: url('assets/background.png') center / cover no-repeat fixed;
+  background: url('/assets/background.png') center / cover no-repeat fixed;
 }
 
 .app__windows {

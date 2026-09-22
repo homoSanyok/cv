@@ -59,23 +59,23 @@
   border: 0;
   border-radius: 50%;
   appearance: none;
-  background: transparent url('assets/design/window-control/window-control-inactive.svg') center / 14px 14px no-repeat;
+  background: transparent url('/assets/design/window-control/window-control-inactive.svg') center / 14px 14px no-repeat;
   cursor: default;
 }
 
 .window__control--close {
-  --control-active: url('assets/design/window-control/window-control-close.svg');
-  --control-hovered: url('assets/design/window-control/window-control-close-hovered.svg');
+  --control-active: url('/assets/design/window-control/window-control-close.svg');
+  --control-hovered: url('/assets/design/window-control/window-control-close-hovered.svg');
 }
 
 .window__control--minimize {
-  --control-active: url('assets/design/window-control/window-control-minimize.svg');
-  --control-hovered: url('assets/design/window-control/window-control-minimize-hovered.svg');
+  --control-active: url('/assets/design/window-control/window-control-minimize.svg');
+  --control-hovered: url('/assets/design/window-control/window-control-minimize-hovered.svg');
 }
 
 .window__control--maximize {
-  --control-active: url('assets/design/window-control/window-control-maximize.svg');
-  --control-hovered: url('assets/design/window-control/window-control-maxmize-hovered.svg');
+  --control-active: url('/assets/design/window-control/window-control-maximize.svg');
+  --control-hovered: url('/assets/design/window-control/window-control-maxmize-hovered.svg');
 }
 
 .window[data-active='true'] .window__control {
