@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react'
 import { useSettings } from '../../../app/services/settings.service'
 
 const translations = {
@@ -62,11 +63,23 @@ export function ProfileScreen() {
           <address className="cv-profile__contacts">
             <div>
               <strong>{text.phone}</strong>
-              <a href="tel:+79939103962">+7 (993)-910 39 62</a>
+              <a
+                href="tel:+79939103962"
+                style={{
+                  '--cursor-default': 'url("assets/design/pointers/Hand%20(Pointing).svg") 15 12, pointer',
+                } as CSSProperties}
+              >
+                +7 (993)-910 39 62
+              </a>
             </div>
             <div>
               <strong>{text.email}</strong>
-              <a href="mailto:sadha.9eneralow@yandex.ru">
+              <a
+                href="mailto:sadha.9eneralow@yandex.ru"
+                style={{
+                  '--cursor-default': 'url("assets/design/pointers/Hand%20(Pointing).svg") 15 12, pointer',
+                } as CSSProperties}
+              >
                 sadha.9eneralow@yandex.ru
               </a>
             </div>
