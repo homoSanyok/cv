@@ -1,0 +1,81 @@
+import { useSettings } from '../../../app/services/settings.service'
+import gazpromEn from '../assets/gazprom-en.svg'
+
+const translations = {
+  ru: {
+    title: 'Это моя текущая работа',
+    logo: 'Газпром нефть — Газпромнефть Автоматика-Сервис',
+    experience: 'Опыт работы:',
+    duration: 'более 3-х лет',
+    position: 'Должность:',
+    stack: 'Базовый стек',
+    frontendStack: 'Front стек:',
+    description: 'Активно участвовал в четырёх проектах компании: интеграция лабораторных приборов в систему ЛИМС; импортозамещение измерительного контроллера массы нефти и нефтепродуктов; импортозамещение системы работы с HART устройствами (AMS Device Manager); разработка системы односторонней передачи данных на оптронах.',
+  },
+  en: {
+    title: 'It’s my current job',
+    logo: 'Gazprom Neft — Gazpromneft Automation Service',
+    experience: 'Experience:',
+    duration: 'more than 3 years',
+    position: 'Post:',
+    stack: 'Stack',
+    frontendStack: 'Front stack:',
+    description: 'I actively participated in four company projects: integrating laboratory devices into a LIMS; developing an oil and petroleum product mass measurement controller; developing a system for working with HART devices (an AMS Device Manager alternative); and developing a one-way data transfer system using optocouplers.',
+  },
+}
+
+const technologies = [
+  { asset: 'nodejs', name: 'Node.js' },
+  { asset: 'typescript', name: 'TypeScript' },
+  { asset: 'angular', name: 'Angular' },
+  { asset: 'docker', name: 'Docker' },
+  { asset: 'linux', name: 'Linux' },
+  { asset: 'git', name: 'Git' },
+  { asset: 'figma', name: 'Figma' },
+]
+
+export function CurrentJobScreen() {
+  const { language } = useSettings()
+  const text = translations[language]
+
+  return (
+    <section className="cv-screen cv-job" aria-label={text.title}>
+      <div className="cv-job__overview">
+        <img
+          className="cv-job__logo"
+          src={language === 'en' ? gazpromEn : 'assets/cv/gazprom.svg'}
+          alt={text.logo}
+        />
+        <dl className="cv-card cv-job__facts">
+          <div>
+            <dt>{text.experience}</dt>
+            <dd>{text.duration}</dd>
+          </div>
+          <div>
+            <dt>{text.position}</dt>
+            <dd>front-end dev</dd>
+          </div>
+        </dl>
+      </div>
+      <div className="cv-card cv-stack">
+        <div className="cv-stack__row">
+          <h2>{text.stack}:</h2>
+          <ul className="cv-stack__icons" aria-label={text.stack}>
+            {technologies.map(({ asset, name }) => (
+              <li key={asset}>
+                <img src={`assets/cv/${asset}.svg`} alt={name} title={name} />
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="cv-stack__row">
+          <h2>{text.frontendStack}</h2>
+          <p>echarts, monaco-editor, rxjs, prizm-ui, zustand</p>
+        </div>
+      </div>
+      <div className="cv-card cv-job__description">
+        <p>{text.description}</p>
+      </div>
+    </section>
+  )
+}

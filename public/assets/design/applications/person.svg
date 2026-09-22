@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="72" height="72" viewBox="0 -1 72 72" fill="none" role="img" aria-labelledby="person-title">
+  <title id="person-title">Профиль человека</title>
+  <path d="M36 5C49.9 5 56.85 5 61.42 9.58C66 14.15 66 21.1 66 35C66 48.9 66 55.85 61.42 60.42C56.85 65 49.9 65 36 65C22.1 65 15.15 65 10.58 60.42C6 55.85 6 48.9 6 35C6 21.1 6 14.15 10.58 9.58C15.15 5 22.1 5 36 5Z" fill="#8274D8"/>
+  <circle cx="36" cy="27" r="9.2" fill="#FFFFFF"/>
+  <path d="M19.8 51.8C19.8 44.3 26.9 39 36 39C45.1 39 52.2 44.3 52.2 51.8C52.2 53.1 51.1 54.2 49.8 54.2H22.2C20.9 54.2 19.8 53.1 19.8 51.8Z" fill="#FFFFFF"/>
+</svg>

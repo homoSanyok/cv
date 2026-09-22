@@ -1,0 +1,154 @@
+.window {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  max-width: 100vw;
+  max-height: 100dvh;
+  overflow: hidden;
+  width: 100%;
+  border-radius: 16px;
+  background: #fff;
+  color: #1d1d1f;
+  box-shadow: 0 12px 40px rgb(0 0 0 / 16%);
+}
+
+.window,
+.window:focus,
+.window:focus-visible,
+.window[data-resizing='true'] {
+  outline: none !important;
+}
+
+.window__titlebar {
+  flex-shrink: 0;
+  touch-action: none;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 8px;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.window[data-minimized='true'] {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.window[data-closed='true'] {
+  display: none;
+}
+
+.window__controls {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 9px;
+}
+
+.window__control {
+  display: block;
+  flex: 0 0 14px;
+  width: 14px;
+  height: 14px;
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  appearance: none;
+  background: transparent url('assets/design/window-control/window-control-inactive.svg') center / 14px 14px no-repeat;
+  cursor: default;
+}
+
+.window__control--close {
+  --control-active: url('assets/design/window-control/window-control-close.svg');
+  --control-hovered: url('assets/design/window-control/window-control-close-hovered.svg');
+}
+
+.window__control--minimize {
+  --control-active: url('assets/design/window-control/window-control-minimize.svg');
+  --control-hovered: url('assets/design/window-control/window-control-minimize-hovered.svg');
+}
+
+.window__control--maximize {
+  --control-active: url('assets/design/window-control/window-control-maximize.svg');
+  --control-hovered: url('assets/design/window-control/window-control-maxmize-hovered.svg');
+}
+
+.window[data-active='true'] .window__control {
+  background-image: var(--control-active);
+}
+
+.window .window__controls:hover .window__control,
+.window .window__controls:focus-within .window__control {
+  background-image: var(--control-hovered);
+}
+
+.window__control:focus-visible {
+  outline: 2px solid #007aff;
+  outline-offset: 2px;
+}
+
+.window__title {
+  overflow: hidden;
+  min-width: 0;
+  margin: 0;
+  font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 15px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.window__content {
+  min-height: 280px;
+  flex: 1;
+  overflow: auto;
+}
+
+.window[data-sized='true'] > .window__content {
+  min-height: 0;
+}
+
+.window__resize {
+  position: absolute;
+  z-index: 2;
+  touch-action: none;
+  user-select: none;
+}
+
+.window__resize--n, .window__resize--s {
+  left: 12px;
+  right: 12px;
+  height: 5px;
+  --resize-cursor: var(--cursor-ns);
+}
+
+.window__resize--e, .window__resize--w {
+  top: 12px;
+  bottom: 12px;
+  width: 5px;
+  --resize-cursor: var(--cursor-ew);
+}
+
+.window__resize--ne, .window__resize--nw,
+.window__resize--se, .window__resize--sw {
+  width: 12px;
+  height: 12px;
+}
+
+.window__resize--ne, .window__resize--sw { --resize-cursor: var(--cursor-nesw); }
+.window__resize--nw, .window__resize--se { --resize-cursor: var(--cursor-nwse); }
+.window__resize--n, .window__resize--ne, .window__resize--nw { top: 0; }
+.window__resize--s, .window__resize--se, .window__resize--sw { bottom: 0; }
+.window__resize--e, .window__resize--ne, .window__resize--se { right: 0; }
+.window__resize--w, .window__resize--nw, .window__resize--sw { left: 0; }
+
+html[data-window-resizing='true'],
+html[data-window-resizing='true'] * {
+  user-select: none !important;
+}

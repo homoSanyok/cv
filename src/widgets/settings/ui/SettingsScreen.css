@@ -1,0 +1,73 @@
+.cv-settings {
+  background: #fff;
+}
+
+.cv-settings__language {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 24px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: #f7f7f7;
+  color: #262626;
+  font-size: 14px;
+}
+
+.cv-settings__combobox {
+  position: relative;
+  flex: 0 1 144px;
+  min-width: 0;
+  max-width: 100%;
+  margin-left: auto;
+}
+
+.cv-settings__combobox select {
+  display: block;
+  width: 100%;
+  min-height: 32px;
+  margin: 0;
+  padding: 6px 36px 6px 12px;
+  border: 0;
+  border-radius: 8px;
+  appearance: none;
+  -webkit-appearance: none;
+  background: #fff;
+  color: inherit;
+  font: inherit;
+  line-height: 20px;
+  box-shadow: 0 0 0 1px rgb(0 0 0 / 2%), 0 1px 2px rgb(0 0 0 / 3%);
+  cursor: default;
+}
+
+.cv-settings__combobox select:focus-visible {
+  outline: 3px solid rgb(0 122 255 / 45%);
+  outline-offset: 2px;
+}
+
+.cv-settings__combobox-arrow {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  bottom: 4px;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  border-radius: 6px;
+  background: #ebebeb;
+  pointer-events: none;
+}
+
+.cv-settings__combobox-arrow svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.cv-settings__combobox select:active + .cv-settings__combobox-arrow {
+  background: #dedede;
+}

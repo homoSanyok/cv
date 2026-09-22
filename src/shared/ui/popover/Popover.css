@@ -1,0 +1,122 @@
+.popover {
+  --popover-background: rgb(255 255 255 / 85%);
+  --popover-border-color: rgb(0 0 0 / 15%);
+  --popover-arrow-width: min(16px, max(0px, calc(100% - 20px)));
+  --popover-arrow-height: 6px;
+  --popover-arrow-shape: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 6' preserveAspectRatio='none'%3E%3Cpath d='M0 0C2 0 3 1 4 2L7 5C7.6 5.6 8.4 5.6 9 5L12 2C13 1 14 0 16 0Z' fill='white'/%3E%3C/svg%3E");
+  position: relative;
+  display: inline-flex;
+  flex: 0 0 auto;
+}
+
+.popover[data-open='true'] {
+  z-index: 1;
+}
+
+.popover__content {
+  box-sizing: border-box;
+  position: absolute;
+  bottom: calc(100% + var(--popover-offset, 12px));
+  left: 50%;
+  width: max-content;
+  max-width: min(240px, calc(100vw - 24px));
+  padding: 6px 8px;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgb(0 0 0 / 15%);
+  isolation: isolate;
+  color: #1d1d1f;
+  font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.4;
+  text-align: center;
+  overflow-wrap: anywhere;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(-50%) scale(0.95);
+  transform-origin: center bottom;
+  transition:
+    opacity 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    transform 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    visibility 0s linear 0.15s;
+}
+
+.popover__content::before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: var(--popover-offset, 12px);
+}
+
+.popover__content::after {
+  content: '';
+  position: absolute;
+  inset: 0 0 calc(-1 * var(--popover-arrow-height));
+  z-index: -1;
+  background: var(--popover-background);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  /* A single background and blur layer fills both the body and its arrow. */
+  -webkit-mask:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='100%25' height='100%25' rx='10' fill='white'/%3E%3C/svg%3E") center top / 100% calc(100% - var(--popover-arrow-height)) no-repeat,
+    var(--popover-arrow-shape) center bottom / var(--popover-arrow-width) var(--popover-arrow-height) no-repeat;
+  mask:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='100%25' height='100%25' rx='10' fill='white'/%3E%3C/svg%3E") center top / 100% calc(100% - var(--popover-arrow-height)) no-repeat,
+    var(--popover-arrow-shape) center bottom / var(--popover-arrow-width) var(--popover-arrow-height) no-repeat;
+}
+
+.popover__outline {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.popover__outline::before {
+  --outline-mask:
+    linear-gradient(#000 0 0) top / 100% calc(100% - 1px) no-repeat,
+    linear-gradient(#000 0 0) bottom left / calc((100% - var(--popover-arrow-width)) / 2) 1px no-repeat,
+    linear-gradient(#000 0 0) bottom right / calc((100% - var(--popover-arrow-width)) / 2) 1px no-repeat;
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 0.5px solid var(--popover-border-color);
+  border-radius: 10px;
+  /* Leave the bottom edge open where the arrow joins the body. */
+  -webkit-mask: var(--outline-mask);
+  mask: var(--outline-mask);
+}
+
+.popover__outline::after {
+  --outline-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -0.5 16 7' preserveAspectRatio='none'%3E%3Cpath d='M0 0C2 0 3 1 4 2L7 5C7.6 5.6 8.4 5.6 9 5L12 2C13 1 14 0 16 0' fill='none' stroke='white' stroke-width='0.5' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E");
+  content: '';
+  position: absolute;
+  top: calc(100% - 0.5px);
+  left: 50%;
+  width: var(--popover-arrow-width);
+  height: calc(var(--popover-arrow-height) + 1px);
+  background: var(--popover-border-color);
+  transform: translateX(-50%);
+  -webkit-mask: var(--outline-arrow) center / 100% 100% no-repeat;
+  mask: var(--outline-arrow) center / 100% 100% no-repeat;
+}
+
+.popover[data-open='true'] > .popover__content {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) scale(1);
+  transition: none;
+}
+
+.popover[data-skip-exit-animation='true'] > .popover__content {
+  transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .popover__content {
+    transition: none;
+  }
+}
