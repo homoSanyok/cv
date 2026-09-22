@@ -41,7 +41,7 @@ export function PreviousJobScreen() {
   const text = translations[language]
 
   return (
-    <section className="cv-screen cv-job" aria-label={text.title}>
+    <section className="cv-screen cv-job cv-previous-job" aria-label={text.title}>
       <div className="cv-job__overview">
         <img
           className="cv-job__logo"

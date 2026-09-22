@@ -99,7 +99,7 @@
   font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 15px;
   font-weight: 600;
-  line-height: 15px;
+  line-height: 1.4;
   text-overflow: ellipsis;
   white-space: nowrap;
 }

@@ -1,5 +1,4 @@
 import { useSettings } from '../../../app/services/settings.service'
-import gazpromEn from '../assets/gazprom-en.svg'
 
 const translations = {
   ru: {
@@ -39,11 +38,11 @@ export function CurrentJobScreen() {
   const text = translations[language]
 
   return (
-    <section className="cv-screen cv-job" aria-label={text.title}>
+    <section className="cv-screen cv-job cv-current-job" aria-label={text.title}>
       <div className="cv-job__overview">
         <img
           className="cv-job__logo"
-          src={language === 'en' ? gazpromEn : 'assets/cv/gazprom.svg'}
+          src="assets/cv/gazprom.svg"
           alt={text.logo}
         />
         <dl className="cv-card cv-job__facts">

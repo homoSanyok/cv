@@ -1,5 +1,4 @@
 import { useSettings } from '../../../app/services/settings.service'
-import transferDiagramEn from '../assets/transfer-diagram-en.jpg'
 
 const translations = {
   ru: {
@@ -17,7 +16,7 @@ const translations = {
 export function DataTransferScreen() {
   const { language } = useSettings()
   const text = translations[language]
-  const diagram = language === 'en' ? transferDiagramEn : 'assets/cv/transfer-diagram.png'
+  const diagram = 'assets/cv/transfer-diagram.png'
 
   return (
     <section className="cv-screen cv-transfer" aria-label={text.title}>

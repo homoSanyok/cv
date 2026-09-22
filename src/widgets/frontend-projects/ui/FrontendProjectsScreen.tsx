@@ -1,5 +1,4 @@
 import { useSettings } from '../../../app/services/settings.service'
-import hartInterfaceEn from '../assets/hart-interface-en.png'
 
 const translations = {
   ru: {
@@ -19,7 +18,7 @@ const translations = {
 export function FrontendProjectsScreen() {
   const { language } = useSettings()
   const text = translations[language]
-  const screenshot = language === 'en' ? hartInterfaceEn : 'assets/cv/hart-interface.png'
+  const screenshot = 'assets/cv/hart-interface.png'
 
   return (
     <section className="cv-screen cv-frontend" aria-label={text.title}>
