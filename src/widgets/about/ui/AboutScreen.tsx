@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react'
 import { useSettings } from '../../../app/services/settings.service'
 
 const translations = {
@@ -53,7 +54,9 @@ export function AboutScreen() {
               href="https://homosanyok.github.io/silly-witch/"
               target="_blank"
               rel="noopener noreferrer"
-              style={{ cursor: 'url("assets/design/pointers/Hand (Pointing).svg") 15 12, pointer' }}
+              style={{
+                '--cursor-default': 'url("assets/design/pointers/Hand%20(Pointing).svg") 15 12, pointer',
+              } as CSSProperties}
             >
               {text.playGame}
             </a>
