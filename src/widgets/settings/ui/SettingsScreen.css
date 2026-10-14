@@ -2,6 +2,27 @@
   background: #fff;
 }
 
+.cv-settings__close-all {
+  margin-top: 16px;
+  padding: 8px 14px;
+  border: 1px solid #dedede;
+  border-radius: 8px;
+  background: #f7f7f7;
+  color: #262626;
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.cv-settings__close-all:hover {
+  background: #ebebeb;
+}
+
+.cv-settings__close-all:focus-visible {
+  outline: 3px solid rgb(0 122 255 / 45%);
+  outline-offset: 2px;
+}
+
 .cv-settings__language {
   display: flex;
   flex-wrap: wrap;

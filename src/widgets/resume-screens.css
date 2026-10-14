@@ -20,41 +20,6 @@
   overflow-wrap: break-word;
 }
 
-.cv-profile {
-  width: 640px;
-  height: 510px;
-}
-
-.cv-current-job {
-  width: 830px;
-  height: 515px;
-}
-
-.cv-previous-job {
-  width: 844px;
-  height: 510px;
-}
-
-.cv-frontend {
-  width: 635px;
-  height: 625px;
-}
-
-.cv-transfer {
-  width: 985px;
-  height: 535px;
-}
-
-.cv-laboratory {
-  width: 765px;
-  height: 500px;
-}
-
-.cv-about {
-  width: 730px;
-  height: 455px;
-}
-
 .cv-screen p,
 .cv-screen h2,
 .cv-screen dl,

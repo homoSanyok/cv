@@ -268,6 +268,7 @@ class ResizeService {
     }
 
     const onResize = () => {
+      if (element.dataset.closed === 'true') return
       finish()
       cancelMaximizeAnimation()
       if (restoreRect) {
@@ -289,18 +290,35 @@ class ResizeService {
       saveState()
     }
 
-    const entry = { toggle }
-    this.windows.set(uuid, entry)
-    const saved = this.readState(uuid)
-    if (saved) {
+    const restoreSavedSize = () => {
+      const saved = this.readState(uuid)
+      if (!saved) return
       if (saved.maximized) {
         restoreRect = saved.rect
         element.dataset.maximized = 'true'
         place({ ...maximizedRect(), ...saved.maximizedPosition })
       } else {
+        restoreRect = null
+        delete element.dataset.maximized
         place(saved.rect)
       }
+      updateMaximized()
     }
+
+    const closedObserver = new MutationObserver(() => {
+      if (element.dataset.closed === 'true') {
+        finish()
+        cancelMaximizeAnimation()
+        saveState()
+      } else {
+        restoreSavedSize()
+      }
+    })
+    closedObserver.observe(element, { attributes: true, attributeFilter: ['data-closed'] })
+
+    const entry = { toggle }
+    this.windows.set(uuid, entry)
+    restoreSavedSize()
     updateMaximized()
     titlebar.addEventListener('dblclick', onDoubleClick)
     element.addEventListener('pointerdown', onPointerDown)
@@ -321,6 +339,7 @@ class ResizeService {
     }
 
     return () => {
+      closedObserver.disconnect()
       finish()
       saveState()
       cancelMaximizeAnimation()

@@ -20,6 +20,10 @@ const screens = [
     appName: { ru: 'Это я', en: 'It’s me' },
     appIcon: 'assets/design/applications/person.svg',
     defaultOpen: true,
+    defaultWidth: 510,
+    defaultHeight: 480,
+    minWidth: 510,
+    minHeight: 480,
     Component: ProfileScreen,
   },
   {

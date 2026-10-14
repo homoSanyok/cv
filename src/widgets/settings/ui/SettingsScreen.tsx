@@ -1,14 +1,17 @@
 import { settingsService, useSettings } from '../../../app/services/settings.service'
+import { dockService } from '../../../app/services/dock.service'
 import './SettingsScreen.css'
 
 const translations = {
   ru: {
     title: 'Настройки',
     language: 'Язык интерфейса',
+    closeAllTabs: 'Закрыть все вкладки',
   },
   en: {
     title: 'Settings',
     language: 'Interface language',
+    closeAllTabs: 'Close all tabs',
   },
 }
 
@@ -42,6 +45,13 @@ export function SettingsScreen() {
           </span>
         </div>
       </div>
+      <button
+        className="cv-settings__close-all"
+        type="button"
+        onClick={() => dockService.closeAll()}
+      >
+        {text.closeAllTabs}
+      </button>
     </section>
   )
 }

@@ -14,11 +14,19 @@ export type WindowProps = {
   appIcon: string
   /** Open when no saved window state exists. Defaults to false. */
   defaultOpen?: boolean
+  /** Initial window width in pixels. */
+  defaultWidth?: number
+  /** Initial window height in pixels. */
+  defaultHeight?: number
+  /** Minimum window width in pixels. */
+  minWidth?: number
+  /** Minimum window height in pixels. */
+  minHeight?: number
   children?: ReactNode
   className?: string
 }
 
-export function Window({ uuid, title, appName, appIcon, defaultOpen = false, children, className }: WindowProps) {
+export function Window({ uuid, title, appName, appIcon, defaultOpen = false, defaultWidth, defaultHeight, minWidth, minHeight, children, className }: WindowProps) {
   const windowRef = useRef<HTMLElement>(null)
   const titlebarRef = useRef<HTMLElement>(null)
   const generatedId = useId()
@@ -77,6 +85,7 @@ export function Window({ uuid, title, appName, appIcon, defaultOpen = false, chi
       id={windowId}
       ref={windowRef}
       className={['window', className].filter(Boolean).join(' ')}
+      style={{ width: defaultWidth, height: defaultHeight, minWidth, minHeight }}
       data-active={isActive}
       aria-labelledby={titleId}
       tabIndex={0}

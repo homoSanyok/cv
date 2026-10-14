@@ -106,8 +106,28 @@ class DragService {
       if (position) this.savePosition(uuid, position)
     }
 
-    const saved = this.getPosition(uuid)
-    if (saved) place(saved)
+    const resetPosition = () => {
+      position = null
+      finish()
+      Object.assign(element.style, originalStyle)
+      try {
+        localStorage.removeItem(this.storageKey(uuid))
+      } catch {
+        // The visible position still resets when storage is unavailable.
+      }
+    }
+
+    const closedObserver = new MutationObserver(() => {
+      if (element.dataset.closed === 'true') resetPosition()
+    })
+    closedObserver.observe(element, { attributes: true, attributeFilter: ['data-closed'] })
+
+    if (element.dataset.closed === 'true') {
+      resetPosition()
+    } else {
+      const saved = this.getPosition(uuid)
+      if (saved) place(saved)
+    }
 
     titlebar.addEventListener('pointerdown', onPointerDown)
     titlebar.addEventListener('pointermove', onPointerMove)
@@ -118,6 +138,7 @@ class DragService {
     window.addEventListener('resize', onResize)
 
     return () => {
+      closedObserver.disconnect()
       finish()
       titlebar.removeEventListener('pointerdown', onPointerDown)
       titlebar.removeEventListener('pointermove', onPointerMove)

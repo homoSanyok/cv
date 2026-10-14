@@ -194,6 +194,13 @@ class DockService {
     }
   }
 
+  closeAll() {
+    for (const [uuid, entry] of this.windows) {
+      if (entry.element.matches('.cv-settings') || entry.element.querySelector('.cv-settings')) continue
+      this.close(uuid)
+    }
+  }
+
   close(uuid: string) {
     const entry = this.windows.get(uuid)
     if (!entry || entry.phase === 'closed') return
