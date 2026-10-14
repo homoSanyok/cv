@@ -1,10 +1,13 @@
 import type { CSSProperties } from 'react'
 import { useSettings } from '../../../app/services/settings.service'
+import './profile.css'
 
 const translations = {
   ru: {
     title: 'Это я',
     portrait: 'Портрет автора резюме',
+    fullName: 'Имя:',
+    name: 'Генералов Александр',
     age: 'Возраст:',
     education: 'Образование:',
     degree: 'Магистр',
@@ -18,6 +21,8 @@ const translations = {
   en: {
     title: 'It’s me',
     portrait: 'Portrait of the CV author',
+    fullName: 'Full name:',
+    name: 'Generalov Aleksandr',
     age: 'Age:',
     education: 'Degree:',
     degree: 'Master of Science in',
@@ -36,59 +41,128 @@ export function ProfileScreen() {
 
   return (
     <section className="cv-screen cv-profile" aria-label={text.title}>
-      <div className="cv-profile__overview">
+      <div className="cv-profile__layout">
         <img
           className="cv-profile__portrait"
           src="assets/cv/portrait.png"
           alt={text.portrait}
         />
         <div className="cv-card cv-profile__details">
-          <dl className="cv-profile__facts">
-            <div>
-              <dt>{text.age}</dt>
-              <dd>24</dd>
+          <div className="cv-profile__contacts-row">
+            <div className="cv-profile__contact-info">
+              <dl className="cv-profile__facts">
+                <div>
+                  <dt>{text.fullName}</dt>
+                  <dd>{text.name}</dd>
+                </div>
+                <div>
+                  <dt>{text.age}</dt>
+                  <dd>{new Date().getFullYear() - 2002}</dd>
+                </div>
+              </dl>
+              <address className="cv-profile__contacts">
+                <div>
+                  <strong>{text.phone}</strong>
+                  <a
+                    href="tel:+79939103962"
+                    style={{
+                      '--cursor-default': 'url("assets/design/pointers/Hand%20(Pointing).svg") 15 12, pointer',
+                    } as CSSProperties}
+                  >
+                    +7 (993)-910 39 62
+                  </a>
+                </div>
+                <div>
+                  <strong>{text.email}</strong>
+                  <a
+                    href="mailto:sadha.9eneralow@yandex.ru"
+                    style={{
+                      '--cursor-default': 'url("assets/design/pointers/Hand%20(Pointing).svg") 15 12, pointer',
+                    } as CSSProperties}
+                  >
+                    sadha.9eneralow@yandex.ru
+                  </a>
+                </div>
+              </address>
             </div>
-            <div>
-              <dt>{text.education}</dt>
-              <dd>{text.degree}</dd>
+            <div className="cv-profile__social-links">
+              <a
+                className="cv-profile__external-link"
+                href="https://www.linkedin.com/in/homosanyok/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn: homosanyok"
+                style={{
+                  '--cursor-default': 'url("assets/design/pointers/Hand%20(Pointing).svg") 15 12, pointer',
+                } as CSSProperties}
+              >
+                <img src="assets/cv/linkedin.svg" alt="" />
+              </a>
+              <a
+                className="cv-profile__external-link"
+                href="https://t.me/homo_sanyok"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Telegram: homo_sanyok"
+                style={{
+                  '--cursor-default': 'url("assets/design/pointers/Hand%20(Pointing).svg") 15 12, pointer',
+                } as CSSProperties}
+              >
+                <img src="assets/cv/telegram.svg" alt="" />
+              </a>
             </div>
-          </dl>
-          <p>{text.subject}</p>
+          </div>
+          <hr className="cv-profile__divider" />
+          <div className="cv-profile__education">
+            <div className="cv-profile__education-text">
+              <dl className="cv-profile__facts">
+                <div>
+                  <dt>{text.education}</dt>
+                  <dd>{text.degree}</dd>
+                </div>
+              </dl>
+              <dl className="cv-profile__facts">
+                <div><dd>{text.subject}</dd></div>
+              </dl>
+            </div>
+            <a
+              className="cv-profile__external-link"
+              href="https://rosbiotech.ru/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={language === 'ru' ? 'Сайт РОСБИОТЕХ' : 'ROSBIOTECH website'}
+              style={{
+                '--cursor-default': 'url("assets/design/pointers/Hand%20(Pointing).svg") 15 12, pointer',
+              } as CSSProperties}
+            >
+              <img src="assets/cv/rosbiotech-favicon.svg" alt="" />
+            </a>
+          </div>
           <dl className="cv-profile__facts">
             <div>
               <dt>{text.english}</dt>
               <dd>B2</dd>
             </div>
           </dl>
-          <address className="cv-profile__contacts">
-            <div>
-              <strong>{text.phone}</strong>
-              <a
-                href="tel:+79939103962"
-                style={{
-                  '--cursor-default': 'url("assets/design/pointers/Hand%20(Pointing).svg") 15 12, pointer',
-                } as CSSProperties}
-              >
-                +7 (993)-910 39 62
-              </a>
-            </div>
-            <div>
-              <strong>{text.email}</strong>
-              <a
-                href="mailto:sadha.9eneralow@yandex.ru"
-                style={{
-                  '--cursor-default': 'url("assets/design/pointers/Hand%20(Pointing).svg") 15 12, pointer',
-                } as CSSProperties}
-              >
-                sadha.9eneralow@yandex.ru
-              </a>
-            </div>
-          </address>
         </div>
-      </div>
-      <div className="cv-card cv-profile__thesis">
-        <h2>{text.thesis}</h2>
-        <p>{text.thesisDescription}</p>
+        <div className="cv-card cv-profile__thesis">
+          <div className="cv-profile__thesis-text">
+            <h2>{text.thesis}</h2>
+            <p>{text.thesisDescription}</p>
+          </div>
+          <a
+            className="cv-profile__external-link"
+            href="https://github.com/homoSanyok/anchor-assistant"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub: anchor-assistant"
+            style={{
+              '--cursor-default': 'url("assets/design/pointers/Hand%20(Pointing).svg") 15 12, pointer',
+            } as CSSProperties}
+          >
+            <img src="assets/cv/github.svg" alt="" />
+          </a>
+        </div>
       </div>
     </section>
   )

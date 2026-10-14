@@ -14,7 +14,7 @@
   background: #fff;
   color: #111;
   font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.4;
   text-align: left;
   overflow-wrap: break-word;
@@ -50,72 +50,6 @@
 .cv-screen a:focus-visible {
   outline: 2px solid #007aff;
   outline-offset: 3px;
-}
-
-.cv-profile__overview {
-  display: grid;
-  grid-template-columns: minmax(0, 0.6fr) minmax(0, 1fr);
-  gap: 16px;
-  margin-bottom: 16px;
-}
-
-.cv-profile__portrait {
-  display: block;
-  width: 100%;
-  height: 100%;
-  min-height: 240px;
-  border-radius: 12px;
-  object-fit: cover;
-  object-position: center;
-}
-
-.cv-profile__details {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.cv-profile__facts > div {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 4px 16px;
-}
-
-.cv-profile__facts > div + div {
-  margin-top: 4px;
-}
-
-.cv-profile__contacts {
-  display: grid;
-  gap: 4px;
-  margin-top: auto;
-  padding-top: 24px;
-  font-size: 12px;
-  font-style: normal;
-}
-
-.cv-profile__contacts > div {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px 12px;
-}
-
-.cv-profile__contacts a {
-  text-decoration: none;
-  overflow-wrap: anywhere;
-}
-
-.cv-profile__contacts a:hover {
-  text-decoration: underline;
-}
-
-.cv-profile__thesis {
-  line-height: 1.25;
-}
-
-.cv-profile__thesis h2 {
-  margin-bottom: 4px;
 }
 
 .cv-job__overview {
@@ -315,17 +249,6 @@
 }
 
 @container (max-width: 380px) {
-  .cv-profile__overview {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .cv-profile__portrait {
-    width: min(100%, 220px);
-    height: auto;
-    min-height: 0;
-    justify-self: center;
-  }
-
   .cv-job__facts > div {
     grid-template-columns: minmax(0, 1fr);
     gap: 4px;
