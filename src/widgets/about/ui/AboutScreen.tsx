@@ -1,5 +1,6 @@
 import type { CSSProperties } from 'react'
 import { useSettings } from '../../../app/services/settings.service'
+import './about.css'
 
 const translations = {
   ru: {

@@ -1,4 +1,5 @@
 import { useSettings } from '../../../app/services/settings.service'
+import './laboratory.css'
 
 const translations = {
   ru: {

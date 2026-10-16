@@ -1,0 +1,45 @@
+.cv-about__layout {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 16px;
+}
+
+.cv-about__description {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  line-height: 1.5;
+}
+
+.cv-about__description ul {
+  padding-left: 28px;
+}
+
+.cv-about__description li + li {
+  margin-top: 4px;
+}
+
+.cv-about__game {
+  display: block;
+  align-self: start;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  image-rendering: pixelated;
+}
+
+@container (max-width: 680px) {
+  .cv-about__layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cv-about__description {
+    gap: 24px;
+  }
+
+  .cv-about__game {
+    max-width: 560px;
+    justify-self: center;
+  }
+}

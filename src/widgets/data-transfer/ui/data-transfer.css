@@ -1,0 +1,38 @@
+.cv-transfer .cv-project__overview {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  align-items: stretch;
+  gap: 16px;
+}
+
+.cv-transfer .cv-project__image-link {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #fff;
+  cursor: zoom-in;
+}
+
+.cv-transfer .cv-project__image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.cv-transfer .cv-project__description {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.cv-transfer .cv-transfer__overview {
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+}
+
+@container (max-width: 680px) {
+  .cv-transfer .cv-project__overview {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

@@ -1,0 +1,58 @@
+.cv-frontend .cv-project__overview {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  align-items: stretch;
+  gap: 16px;
+}
+
+.cv-frontend .cv-project__image-link {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #fff;
+  cursor: zoom-in;
+}
+
+.cv-frontend .cv-project__image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.cv-frontend .cv-project__description {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.cv-frontend .cv-project__note {
+  margin-top: auto !important;
+  padding-top: 32px;
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.cv-frontend .cv-frontend__overview {
+  margin-bottom: 16px;
+}
+
+.cv-frontend .cv-frontend__details {
+  display: grid;
+  gap: 24px;
+}
+
+.cv-frontend .cv-frontend__details ul {
+  padding-left: 24px;
+}
+
+@container (max-width: 680px) {
+  .cv-frontend .cv-project__overview {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cv-frontend .cv-project__note {
+    padding-top: 0;
+  }
+}

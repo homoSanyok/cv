@@ -1,4 +1,5 @@
 import { useSettings } from '../../../app/services/settings.service'
+import './data-transfer.css'
 
 const translations = {
   ru: {
