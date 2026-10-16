@@ -1,5 +1,15 @@
+import { dockService } from '../../../app/services/dock.service'
 import { useSettings } from '../../../app/services/settings.service'
 import './current-job.css'
+
+type ProjectWindow = {
+  uuid: string
+  appName: { ru: string; en: string }
+}
+
+type CurrentJobScreenProps = {
+  windows: readonly ProjectWindow[]
+}
 
 const translations = {
   ru: {
@@ -10,7 +20,12 @@ const translations = {
     position: 'Должность:',
     stack: 'Базовый стек',
     frontendStack: 'Front стек:',
-    description: 'Активно участвовал в четырёх проектах компании: интеграция лабораторных приборов в систему ЛИМС; импортозамещение измерительного контроллера массы нефти и нефтепродуктов; импортозамещение системы работы с HART устройствами (AMS Device Manager); разработка системы односторонней передачи данных на оптронах.',
+    descriptionIntro: 'Активно участвовал в четырёх проектах компании: ',
+    laboratory: 'интеграция лабораторных приборов в систему ЛИМС',
+    measurementController: 'импортозамещение измерительного контроллера массы нефти и нефтепродуктов',
+    hartDevices: 'импортозамещение системы работы с HART устройствами (AMS Device Manager)',
+    dataTransfer: 'разработка системы односторонней передачи данных на оптронах',
+    lastProjectSeparator: '; ',
   },
   en: {
     title: 'It’s my current job',
@@ -20,7 +35,12 @@ const translations = {
     position: 'Post:',
     stack: 'Stack',
     frontendStack: 'Front stack:',
-    description: 'I actively participated in four company projects: integrating laboratory devices into a LIMS; developing an oil and petroleum product mass measurement controller; developing a system for working with HART devices (an AMS Device Manager alternative); and developing a one-way data transfer system using optocouplers.',
+    descriptionIntro: 'I actively participated in four company projects: ',
+    laboratory: 'integrating laboratory devices into a LIMS',
+    measurementController: 'developing an oil and petroleum product mass measurement controller',
+    hartDevices: 'developing a system for working with HART devices (an AMS Device Manager alternative)',
+    dataTransfer: 'developing a one-way data transfer system using optocouplers',
+    lastProjectSeparator: '; and ',
   },
 }
 
@@ -34,9 +54,27 @@ const technologies = [
   { asset: 'figma', name: 'Figma' },
 ]
 
-export function CurrentJobScreen() {
+export function CurrentJobScreen({ windows }: CurrentJobScreenProps) {
   const { language } = useSettings()
   const text = translations[language]
+
+  const projectLink = (uuid: string, label: string) => {
+    const projectWindow = windows.find((window) => window.uuid === uuid)
+    if (!projectWindow) return label
+
+    return (
+      <a
+        className="cv-job__project-link"
+        href={`#${projectWindow.uuid}`}
+        onClick={(event) => {
+          event.preventDefault()
+          dockService.activateApplication(projectWindow.appName[language])
+        }}
+      >
+        {label}
+      </a>
+    )
+  }
 
   return (
     <section className="cv-screen cv-job cv-current-job" aria-label={text.title}>
@@ -74,7 +112,17 @@ export function CurrentJobScreen() {
         </div>
       </div>
       <div className="cv-card cv-job__description">
-        <p>{text.description}</p>
+        <p>
+          {text.descriptionIntro}
+          {projectLink('laboratory', text.laboratory)}
+          {'; '}
+          {projectLink('frontend-projects', text.measurementController)}
+          {'; '}
+          {projectLink('frontend-projects', text.hartDevices)}
+          {text.lastProjectSeparator}
+          {projectLink('data-transfer', text.dataTransfer)}
+          {'.'}
+        </p>
       </div>
     </section>
   )

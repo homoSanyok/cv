@@ -69,6 +69,15 @@
   min-height: 150px;
 }
 
+.cv-current-job .cv-job__project-link {
+  --cursor-default: url("assets/design/pointers/Hand%20(Pointing).svg") 15 12, pointer;
+  text-decoration: none;
+}
+
+.cv-current-job .cv-job__project-link:hover {
+  text-decoration: underline;
+}
+
 @container (max-width: 680px) {
   .cv-current-job .cv-job__overview {
     grid-template-columns: minmax(0, 1fr);

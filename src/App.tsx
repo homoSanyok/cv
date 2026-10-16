@@ -1,9 +1,10 @@
-import { useEffect } from 'react'
+import { useEffect, useLayoutEffect, useRef } from 'react'
 import './App.css'
 import './widgets/resume-screens.css'
 import { useSettings } from './app/services/settings.service'
 import { Dock } from './entities/dock'
 import { Window } from './shared/ui/window'
+import { layoutDefaultWindows } from './shared/ui/window/layoutDefaultWindows'
 import { AboutScreen } from './widgets/about'
 import { CurrentJobScreen } from './widgets/current-job'
 import { DataTransferScreen } from './widgets/data-transfer'
@@ -31,6 +32,7 @@ const screens = [
     title: { ru: 'Это моя текущая работа', en: 'It’s my current job' },
     appName: { ru: 'Газпром нефть', en: 'Gazprom Neft' },
     appIcon: 'assets/design/applications/gazprom.svg',
+    defaultOpen: true,
     defaultWidth: 725,
     defaultHeight: 505,
     minWidth: 540,
@@ -98,11 +100,29 @@ const screens = [
     appName: { ru: 'Настройки', en: 'Settings' },
     appIcon: 'assets/design/applications/settings.svg',
     Component: SettingsScreen,
+    defaultWidth: 575,
+    defaultHeight: 315,
+    minWidth: 575,
+    minHeight: 315,
   },
 ]
 
+const projectWindows = screens.filter(({ uuid }) => (
+  uuid === 'laboratory' || uuid === 'frontend-projects' || uuid === 'data-transfer'
+))
+
 function App() {
   const { language } = useSettings()
+  const windowsRef = useRef<HTMLDivElement>(null)
+
+  useLayoutEffect(() => {
+    if (!windowsRef.current) return
+
+    return layoutDefaultWindows(
+      windowsRef.current,
+      screens.filter((screen) => screen.defaultOpen).map((screen) => screen.uuid),
+    )
+  }, [])
 
   useEffect(() => {
     document.documentElement.lang = language
@@ -110,7 +130,7 @@ function App() {
 
   return (
     <main className="app">
-      <div className="app__windows">
+      <div ref={windowsRef} className="app__windows">
         {screens.map(({ Component, title, appName, ...windowProps }) => (
           <Window
             key={windowProps.uuid}
@@ -118,7 +138,7 @@ function App() {
             title={title[language]}
             appName={appName[language]}
           >
-            <Component />
+            <Component windows={projectWindows} />
           </Window>
         ))}
       </div>
